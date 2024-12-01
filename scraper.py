@@ -46,7 +46,7 @@ class AppSearchManager:
         return app_info
 
     async def search_google_play(self, session: aiohttp.ClientSession, search_term: str) -> AppInfo:
-        base_url = f"https://play.google.com/store/search?q={search_term}&c=apps&gl=TW"
+        base_url = f"https://play.google.com/store/search?q={search_term}&c=apps&hl=zh_TW"
         app_info = AppInfo(platform="Google Play Store", search_term=search_term)
         
         try:
