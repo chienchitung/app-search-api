@@ -62,6 +62,14 @@ class AppSearchManager:
                             if link_element := soup.select_one('a[href*="/store/apps/details"]'):
                                 app_info.link = f"https://play.google.com{link_element['href']}&hl=zh_TW"
                                 app_info.found = True
+                    else:
+                        if name_div := soup.select_one('div.ubGTjb'):
+                            app_name = name_div.text.strip()
+                            if app_name:
+                                app_info.name = app_name
+                                if link_element := soup.select_one('a[href*="/store/apps/details"]'):
+                                    app_info.link = f"https://play.google.com{link_element['href']}&hl=zh_TW"
+                                    app_info.found = True                
                 else:
                     logger.warning(f"Google Play returned status {response.status} for term '{search_term}'")
         except Exception as e:
